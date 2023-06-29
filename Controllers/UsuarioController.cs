@@ -54,7 +54,7 @@ namespace ProveedoresBackendCSharp.Controllers
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.key));
             var signin = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var token = new JwtSecurityToken(jwt.issuer, jwt.audience, claims, expires: DateTime.Now.AddHours(24), signingCredentials: signin);
+            var token = new JwtSecurityToken(jwt.issuer, jwt.audience, claims, expires: DateTime.Now.AddDays(1), signingCredentials: signin);
             //var token = new JwtSecurityToken(jwt.issuer, jwt.audience, claims, expires: DateTime.Now.AddMinutes(60), signingCredentials: signin);
 
             return new
