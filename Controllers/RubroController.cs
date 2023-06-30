@@ -6,7 +6,7 @@ using ProveedoresBackendCSharp.Models;
 namespace ProveedoresBackendCSharp.Controllers
 {
     [ApiController]
-    [Route("api/rubro")]
+    [Route("api/rubros")]
     public class RubroController: ControllerBase
     {
         [HttpGet]

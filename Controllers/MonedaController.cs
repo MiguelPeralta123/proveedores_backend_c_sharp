@@ -6,7 +6,7 @@ using ProveedoresBackendCSharp.Models;
 namespace ProveedoresBackendCSharp.Controllers
 {
     [ApiController]
-    [Route("api/moneda")]
+    [Route("api/monedas")]
     public class MonedaController: ControllerBase
     {
         [HttpGet]

@@ -6,7 +6,7 @@ using ProveedoresBackendCSharp.Models;
 namespace ProveedoresBackendCSharp.Controllers
 {
     [ApiController]
-    [Route("api/material_familia")]
+    [Route("api/material_familias")]
     public class MaterialFamiliaController: ControllerBase
     {
         [HttpGet]

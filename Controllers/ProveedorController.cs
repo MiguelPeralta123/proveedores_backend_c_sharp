@@ -6,15 +6,15 @@ using ProveedoresBackendCSharp.Models;
 namespace ProveedoresBackendCSharp.Controllers
 {
     [ApiController]
-    [Route("api/contribuyentes")]
-    public class ContribuyenteController: ControllerBase
+    [Route("api/proveedores")]
+    public class ProveedorController: ControllerBase
     {
         [HttpGet]
         [Authorize]
-        public async Task<ActionResult<List<ContribuyenteModel>>> getContribuyentes()
+        public async Task<ActionResult<List<ProveedorModel>>> getProveedores()
         {
-            var function = new ContribuyenteData();
-            var list = await function.getContribuyentes();
+            var function = new ProveedorData();
+            var list = await function.getProveedores();
             return list;
         }
     }

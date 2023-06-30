@@ -67,7 +67,7 @@ namespace ProveedoresBackendCSharp.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<List<UsuarioModel>> getUsers()
+        private async Task<List<UsuarioModel>> getUsers()
         {
             var function = new UsuarioData();
             var list = await function.GetUsers();
