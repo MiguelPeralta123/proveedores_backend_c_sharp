@@ -5,16 +5,16 @@ using System.Data;
 
 namespace ProveedoresBackendCSharp.Data
 {
-    public class MaterialUnidadMedidaData
+    public class MaterialProductoData
     {
         ConnectionDB cn = new ConnectionDB();
 
-        public async Task<List<MaterialUnidadMedidaModel>> getUnidadesMedida()
+        public async Task<List<MaterialProductoModel>> getProductos()
         {
-            var list = new List<MaterialUnidadMedidaModel>();
+            var list = new List<MaterialProductoModel>();
             using (var sql = new SqlConnection(cn.ConnectionString()))
             {
-                using (var cmd = new SqlCommand("getMaterialUnidadMedida", sql))
+                using (var cmd = new SqlCommand("getMaterialProducto", sql))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     await sql.OpenAsync();
@@ -22,8 +22,8 @@ namespace ProveedoresBackendCSharp.Data
                     {
                         while (await reader.ReadAsync())
                         {
-                            var unidad_medida = new MaterialUnidadMedidaModel((string)reader["tipo"], (string)reader["unidad_medida"]);
-                            list.Add(unidad_medida);
+                            var producto = new MaterialProductoModel((string)reader["subfamilia"], (string)reader["producto"]);
+                            list.Add(producto);
                         }
                         return list;
                     }
@@ -31,22 +31,22 @@ namespace ProveedoresBackendCSharp.Data
             }
         }
 
-        public async Task<List<MaterialUnidadMedidaModel>> getUnidadesMedidaByTipo(string tipo)
+        public async Task<List<MaterialProductoModel>> getProductosBySubfamilia(string subfamilia)
         {
-            var list = new List<MaterialUnidadMedidaModel>();
+            var list = new List<MaterialProductoModel>();
             using (var sql = new SqlConnection(cn.ConnectionString()))
             {
-                using (var cmd = new SqlCommand("getUnidadesMedidaByTipo", sql))
+                using (var cmd = new SqlCommand("getMaterialProductosBySubfamilia", sql))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("tipo", tipo);
+                    cmd.Parameters.AddWithValue("subfamilia", subfamilia);
                     await sql.OpenAsync();
                     using (var reader = await cmd.ExecuteReaderAsync())
                     {
                         while (await reader.ReadAsync())
                         {
-                            var unidad_medida = new MaterialUnidadMedidaModel((string)reader["tipo"], (string)reader["unidad_medida"]);
-                            list.Add(unidad_medida);
+                            var producto = new MaterialProductoModel((string)reader["subfamilia"], (string)reader["producto"]);
+                            list.Add(producto);
                         }
                         return list;
                     }

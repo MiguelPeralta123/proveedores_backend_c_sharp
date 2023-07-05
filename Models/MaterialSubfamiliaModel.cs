@@ -2,12 +2,12 @@
 {
     public class MaterialSubfamiliaModel
     {
-        public MaterialSubfamiliaModel(string subfamilia, string producto)
+        public MaterialSubfamiliaModel(string familia, string subfamilia)
         {
+            this.familia = familia;
             this.subfamilia = subfamilia;
-            this.producto = producto;
         }
+        public string familia { get; set; }
         public string subfamilia { get; set; }
-        public string producto { get; set; }
     }
 }

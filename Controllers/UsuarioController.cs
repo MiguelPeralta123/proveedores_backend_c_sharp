@@ -21,11 +21,11 @@ namespace ProveedoresBackendCSharp.Controllers
         }
 
         [HttpPost]
-        public async Task<dynamic> Login([FromBody] Object UsuarioData)
+        public async Task<dynamic> Login([FromForm] UsuarioModel usuario)
         {
-            var credentials = JsonConvert.DeserializeObject<dynamic>(UsuarioData.ToString());
-            string username = credentials.username.ToString();
-            string password = credentials.password.ToString();
+            //var credentials = JsonConvert.DeserializeObject<dynamic>(UsuarioData.ToString());
+            string username = usuario.username;
+            string password = usuario.password;
 
             List<UsuarioModel> usersList = await getUsers();
             var user = usersList.Where(x => x.username == username && x.password == password).FirstOrDefault();
@@ -55,7 +55,6 @@ namespace ProveedoresBackendCSharp.Controllers
             var signin = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(jwt.issuer, jwt.audience, claims, expires: DateTime.Now.AddDays(1), signingCredentials: signin);
-            //var token = new JwtSecurityToken(jwt.issuer, jwt.audience, claims, expires: DateTime.Now.AddMinutes(60), signingCredentials: signin);
 
             return new
             {

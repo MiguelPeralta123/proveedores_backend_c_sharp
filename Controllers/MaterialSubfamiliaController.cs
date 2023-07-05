@@ -17,5 +17,14 @@ namespace ProveedoresBackendCSharp.Controllers
             var list = await function.getSubfamilias();
             return list;
         }
+
+        [HttpGet("{familia}")]
+        [Authorize]
+        public async Task<ActionResult<List<MaterialSubfamiliaModel>>> getSubfamiliasByFamilia(string familia)
+        {
+            var function = new MaterialSubfamiliaData();
+            var list = await function.getSubfamiliasByFamilia(familia);
+            return list;
+        }
     }
 }

@@ -24,6 +24,14 @@ namespace ProveedoresBackendCSharp.Controllers
             return list;
         }
 
+        [HttpGet("{id}")]
+        [Authorize]
+        public async Task<ActionResult<List<ProveedorModel>>> getProveedorById(int id)
+        {
+            var list = await proveedorData.getProveedorById(id);
+            return list;
+        }
+
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> postProveedor([FromForm] ProveedorModel proveedor, [FromForm] IFormFile constancia, [FromForm] IFormFile estado_cuenta)
@@ -36,7 +44,7 @@ namespace ProveedoresBackendCSharp.Controllers
                     var timestamp = DateTime.Now.Ticks.ToString();
                     var nombre_constancia = $"{timestamp}_{Path.GetFileName(constancia.FileName)}";
                     var ruta_constancia = Path.Combine(Directory.GetCurrentDirectory(), "Documentos", "Constancias", nombre_constancia);
-
+                    
                     // Crear la carpeta "Documentos/Constancias" en caso de que no exista
                     var directorio_constancia = Path.GetDirectoryName(ruta_constancia);
                     if (!Directory.Exists(directorio_constancia))
@@ -83,6 +91,50 @@ namespace ProveedoresBackendCSharp.Controllers
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error al crear el proveedor: {ex.Message}");
+            }
+        }
+
+        [HttpPut("{id}")]
+        [Authorize]
+        public async Task<IActionResult> putProveedor(int id, [FromForm] ProveedorModel proveedor)
+        {
+            try
+            {
+                // Verificar si el proveedor existe en la base de datos
+                var proveedorExistente = await proveedorData.getProveedorById(id);
+                if (proveedorExistente.Count() == 0)
+                {
+                    return NotFound("Proveedor no encontrado.");
+                }
+                // Si el proveedor existe, actualizar
+                await proveedorData.putProveedor(id, proveedor);
+                return Ok("Proveedor modificado exitosamente.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error al modificar el proveedor: {ex.Message}");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<IActionResult> deleteProveedor(int id)
+        {
+            try
+            {
+                // Verificar si el proveedor existe en la base de datos
+                var proveedorExistente = await proveedorData.getProveedorById(id);
+                if (proveedorExistente.Count() == 0)
+                {
+                    return NotFound("Proveedor no encontrado.");
+                }
+                // Si el proveedor existe, eliminar
+                await proveedorData.deleteProveedor(id);
+                return Ok("Proveedor eliminado exitosamente.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error al eliminar el proveedor: {ex.Message}");
             }
         }
     }

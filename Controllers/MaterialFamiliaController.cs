@@ -17,5 +17,14 @@ namespace ProveedoresBackendCSharp.Controllers
             var list = await function.getFamilias();
             return list;
         }
+
+        [HttpGet("{tipo}")]
+        [Authorize]
+        public async Task<ActionResult<List<MaterialFamiliaModel>>> getFamiliaByTipo(string tipo)
+        {
+            var function = new MaterialFamiliaData();
+            var list = await function.getFamiliasByTipo(tipo);
+            return list;
+        }
     }
 }

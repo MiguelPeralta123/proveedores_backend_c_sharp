@@ -5,16 +5,16 @@ using System.Data;
 
 namespace ProveedoresBackendCSharp.Data
 {
-    public class MaterialTipoData
+    public class MaterialProductoServicioData
     {
         ConnectionDB cn = new ConnectionDB();
 
-        public async Task<List<MaterialTipoModel>> getTipos()
+        public async Task<List<MaterialProductoServicioModel>> getMaterialProductoServicio()
         {
-            var list = new List<MaterialTipoModel>();
+            var list = new List<MaterialProductoServicioModel>();
             using (var sql = new SqlConnection(cn.ConnectionString()))
             {
-                using (var cmd = new SqlCommand("getMaterialTipo", sql))
+                using (var cmd = new SqlCommand("getMaterialProductoServicio", sql))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     await sql.OpenAsync();
@@ -22,7 +22,7 @@ namespace ProveedoresBackendCSharp.Data
                     {
                         while (await reader.ReadAsync())
                         {
-                            var tipo = new MaterialTipoModel((string)reader["tipo"], (string)reader["familia"]);
+                            var tipo = new MaterialProductoServicioModel((string)reader["tipo"]);
                             list.Add(tipo);
                         }
                         return list;

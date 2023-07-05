@@ -22,11 +22,19 @@ namespace ProveedoresBackendCSharp.Data
                     {
                         while (await reader.ReadAsync())
                         {
-                            var user = new UsuarioModel((string)reader["username"], (string)reader["password"],
-                                (string)reader["nombre"], (string)reader["puesto"], (string)reader["correo"],
-                                (bool)reader["comprador"], (bool)reader["aprob_compras"], (bool)reader["aprob_finanzas"], 
-                                (bool)reader["aprob_sistemas"], (bool)reader["admin"]);
-                            list.Add(user);
+                            var usuario = new UsuarioModel();
+                            usuario.id = (int)reader["id"];
+                            usuario.username = (string)reader["username"];
+                            usuario.password = (string)reader["password"];
+                            usuario.nombre = (string)reader["nombre"];
+                            usuario.puesto = (string)reader["puesto"];
+                            usuario.correo = (string)reader["correo"];
+                            usuario.comprador = (bool)reader["comprador"];
+                            usuario.aprob_compras = (bool)reader["aprob_compras"];
+                            usuario.aprob_finanzas = (bool)reader["aprob_finanzas"];
+                            usuario.aprob_sistemas = (bool)reader["aprob_sistemas"];
+                            usuario.admin = (bool)reader["admin"];
+                            list.Add(usuario);
                         }
                         return list;
                     }
