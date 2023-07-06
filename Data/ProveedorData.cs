@@ -23,6 +23,7 @@ namespace ProveedoresBackendCSharp.Data
                         while (await reader.ReadAsync())
                         {
                             var proveedor = new ProveedorModel();
+                            proveedor.id = (int)reader["id"];
                             proveedor.empresa = (string)reader["empresa"];
                             proveedor.codigo = (string)reader["codigo"];
                             proveedor.tipo_alta = (string)reader["tipo_alta"];
@@ -120,7 +121,8 @@ namespace ProveedoresBackendCSharp.Data
                             proveedor.no_aplica_rafaga = (bool)reader["no_aplica_rafaga"];
                             proveedor.no_relacionar_oc = (bool)reader["no_relacionar_oc"];
                             proveedor.folio = (string)reader["folio"];
-                            proveedor.id_usuario = (int)reader["id_usuario"];
+                            proveedor.id_solicitante = (int)reader["id_solicitante"];
+                            proveedor.solicitante = (string)reader["solicitante"];
                             proveedor.rechazado_compras = (bool)reader["rechazado_compras"];
                             proveedor.rechazado_finanzas = (bool)reader["rechazado_finanzas"];
                             proveedor.rechazado_sistemas = (bool)reader["rechazado_sistemas"];
@@ -151,6 +153,7 @@ namespace ProveedoresBackendCSharp.Data
                         while (await reader.ReadAsync())
                         {
                             var proveedor = new ProveedorModel();
+                            proveedor.id = (int)reader["id"];
                             proveedor.empresa = (string)reader["empresa"];
                             proveedor.codigo = (string)reader["codigo"];
                             proveedor.tipo_alta = (string)reader["tipo_alta"];
@@ -248,7 +251,8 @@ namespace ProveedoresBackendCSharp.Data
                             proveedor.no_aplica_rafaga = (bool)reader["no_aplica_rafaga"];
                             proveedor.no_relacionar_oc = (bool)reader["no_relacionar_oc"];
                             proveedor.folio = (string)reader["folio"];
-                            proveedor.id_usuario = (int)reader["id_usuario"];
+                            proveedor.id_solicitante = (int)reader["id_solicitante"];
+                            proveedor.solicitante = (string)reader["solicitante"];
                             proveedor.rechazado_compras = (bool)reader["rechazado_compras"];
                             proveedor.rechazado_finanzas = (bool)reader["rechazado_finanzas"];
                             proveedor.rechazado_sistemas = (bool)reader["rechazado_sistemas"];
@@ -408,7 +412,8 @@ namespace ProveedoresBackendCSharp.Data
                     cmd.Parameters.AddWithValue("@no_aplica_rafaga", proveedor.no_aplica_rafaga);
                     cmd.Parameters.AddWithValue("@no_relacionar_oc", proveedor.no_relacionar_oc);
                     cmd.Parameters.AddWithValue("@folio", proveedor.folio);
-                    cmd.Parameters.AddWithValue("@id_usuario", proveedor.id_usuario);
+                    cmd.Parameters.AddWithValue("@id_solicitante", proveedor.id_solicitante);
+                    cmd.Parameters.AddWithValue("@solicitante", proveedor.solicitante);
                     cmd.Parameters.AddWithValue("@rechazado_compras", false);
                     cmd.Parameters.AddWithValue("@rechazado_finanzas", false);
                     cmd.Parameters.AddWithValue("@rechazado_sistemas", false);

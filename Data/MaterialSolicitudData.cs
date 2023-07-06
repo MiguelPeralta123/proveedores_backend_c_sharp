@@ -25,7 +25,8 @@ namespace ProveedoresBackendCSharp.Data
                             var solicitud = new MaterialSolicitudModel();
                             solicitud.id_solicitud = (string)reader["id_solicitud"];
                             solicitud.empresa = (string)reader["empresa"];
-                            solicitud.id_usuario = (int)reader["id_usuario"];
+                            solicitud.id_solicitante = (int)reader["id_solicitante"];
+                            solicitud.solicitante = (string)reader["solicitante"];
                             solicitud.fecha = (DateTime)reader["fecha"];
                             solicitud.aprobado_compras = (bool)reader["aprobado_compras"];
                             solicitud.aprobado_finanzas = (bool)reader["aprobado_finanzas"];
@@ -59,7 +60,8 @@ namespace ProveedoresBackendCSharp.Data
                             var solicitud = new MaterialSolicitudModel();
                             solicitud.id_solicitud = (string)reader["id_solicitud"];
                             solicitud.empresa = (string)reader["empresa"];
-                            solicitud.id_usuario = (int)reader["id_usuario"];
+                            solicitud.id_solicitante = (int)reader["id_solicitante"];
+                            solicitud.solicitante = (string)reader["solicitante"];
                             solicitud.fecha = (DateTime)reader["fecha"];
                             solicitud.aprobado_compras = (bool)reader["aprobado_compras"];
                             solicitud.aprobado_finanzas = (bool)reader["aprobado_finanzas"];
@@ -85,7 +87,8 @@ namespace ProveedoresBackendCSharp.Data
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@id_solicitud", solicitud.id_solicitud);
                     cmd.Parameters.AddWithValue("@empresa", solicitud.empresa);
-                    cmd.Parameters.AddWithValue("@id_usuario", solicitud.id_usuario);
+                    cmd.Parameters.AddWithValue("@id_solicitante", solicitud.id_solicitante);
+                    cmd.Parameters.AddWithValue("@solicitante", solicitud.solicitante);
                     cmd.Parameters.AddWithValue("@fecha", DateTime.Now);
                     cmd.Parameters.AddWithValue("@aprobado_compras", false);
                     cmd.Parameters.AddWithValue("@aprobado_finanzas", false);

@@ -48,7 +48,7 @@ namespace ProveedoresBackendCSharp.Controllers
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                 new Claim("id", user.id.ToString()),
-                new Claim("username", user.username)
+                new Claim("nombre", user.nombre)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.key));

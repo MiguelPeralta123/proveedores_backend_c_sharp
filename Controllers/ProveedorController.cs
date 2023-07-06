@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using ProveedoresBackendCSharp.Data;
 using ProveedoresBackendCSharp.Models;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace ProveedoresBackendCSharp.Controllers
 {
@@ -38,6 +40,13 @@ namespace ProveedoresBackendCSharp.Controllers
         {
             try
             {
+                // Obtener el id y nombre del usuario a partir del token
+                var idClaim = User.Claims.FirstOrDefault(c => c.Type == "id");
+                proveedor.id_solicitante = idClaim != null ? int.Parse(idClaim.Value) : 0;
+
+                var nombreClaim = User.Claims.FirstOrDefault(c => c.Type == "nombre");
+                proveedor.solicitante = nombreClaim != null ? nombreClaim.Value : string.Empty;
+
                 // Validar la existencia del primer archivo (constancia de situacion fiscal)
                 if (constancia != null && constancia.Length > 0)
                 {
@@ -84,7 +93,7 @@ namespace ProveedoresBackendCSharp.Controllers
                     proveedor.ruta_estado_cuenta = ruta_estado_cuenta;
                 }
 
-                // Guardar el proveedor en la base de datos
+                // Guardando el proveedor en la base de datos
                 await proveedorData.postProveedor(proveedor);
                 return Ok("Proveedor creado exitosamente.");
             }

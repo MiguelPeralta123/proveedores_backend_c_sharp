@@ -71,7 +71,8 @@
         public bool no_aplica_rafaga { get; set; }
         public bool no_relacionar_oc { get; set; }
         public string folio { get; set; }
-        public int id_usuario { get; set; }
+        public int? id_solicitante { get; set; }
+        public string? solicitante { get; set; }
         public bool rechazado_compras { get; set; }
         public bool rechazado_finanzas { get; set; }
         public bool rechazado_sistemas { get; set; }

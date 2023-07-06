@@ -5,7 +5,8 @@
         public MaterialSolicitudModel() { }
         public string id_solicitud { get; set; }
         public string empresa { get; set; }
-        public int id_usuario { get; set; }
+        public int? id_solicitante { get; set; }
+        public string? solicitante { get; set; }
         public DateTime fecha { get; set; }
         public bool aprobado_compras { get; set; }
         public bool aprobado_finanzas { get; set; }

@@ -38,6 +38,14 @@ namespace ProveedoresBackendCSharp.Controllers
         {
             try
             {
+                // Obtener el id y nombre del usuario a partir del token
+                var idClaim = User.Claims.FirstOrDefault(c => c.Type == "id");
+                solicitud.id_solicitante = idClaim != null ? int.Parse(idClaim.Value) : 0;
+
+                var nombreClaim = User.Claims.FirstOrDefault(c => c.Type == "nombre");
+                solicitud.solicitante = nombreClaim != null ? nombreClaim.Value : string.Empty;
+
+                // Guardar la solicitud de material en la base de datos
                 await materialSolicitudData.postMaterialSolicitud(solicitud);
                 return Ok("Solicitud de material creada exitosamente.");
             }
