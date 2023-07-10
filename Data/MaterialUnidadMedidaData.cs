@@ -22,7 +22,7 @@ namespace ProveedoresBackendCSharp.Data
                     {
                         while (await reader.ReadAsync())
                         {
-                            var unidad_medida = new MaterialUnidadMedidaModel((string)reader["tipo"], (string)reader["unidad_medida"]);
+                            var unidad_medida = new MaterialUnidadMedidaModel((string)reader["tipo"], (string)reader["unidad_medida"], (string)reader["abreviatura"]);
                             list.Add(unidad_medida);
                         }
                         return list;
@@ -36,7 +36,7 @@ namespace ProveedoresBackendCSharp.Data
             var list = new List<MaterialUnidadMedidaModel>();
             using (var sql = new SqlConnection(cn.ConnectionString()))
             {
-                using (var cmd = new SqlCommand("getUnidadesMedidaByTipo", sql))
+                using (var cmd = new SqlCommand("getMaterialUnidadMedidaByTipo", sql))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("tipo", tipo);
@@ -45,7 +45,7 @@ namespace ProveedoresBackendCSharp.Data
                     {
                         while (await reader.ReadAsync())
                         {
-                            var unidad_medida = new MaterialUnidadMedidaModel((string)reader["tipo"], (string)reader["unidad_medida"]);
+                            var unidad_medida = new MaterialUnidadMedidaModel((string)reader["tipo"], (string)reader["unidad_medida"], (string)reader["abreviatura"]);
                             list.Add(unidad_medida);
                         }
                         return list;

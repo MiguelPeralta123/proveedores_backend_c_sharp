@@ -23,7 +23,6 @@ namespace ProveedoresBackendCSharp.Controllers
         [HttpPost]
         public async Task<dynamic> Login([FromForm] UsuarioModel usuario)
         {
-            //var credentials = JsonConvert.DeserializeObject<dynamic>(UsuarioData.ToString());
             string username = usuario.username;
             string password = usuario.password;
 

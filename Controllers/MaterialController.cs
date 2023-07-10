@@ -32,6 +32,7 @@ namespace ProveedoresBackendCSharp.Controllers
             return list;
         }
 
+        /*
         [HttpGet("solicitudes/{id_solicitud}")]
         [Authorize]
         public async Task<ActionResult<List<MaterialModel>>> getMaterialByIdSolicitud(string id_solicitud)
@@ -39,6 +40,7 @@ namespace ProveedoresBackendCSharp.Controllers
             var list = await materialData.getMaterialByIdSolicitud(id_solicitud);
             return list;
         }
+        */
 
         [HttpPost]
         [Authorize]
@@ -46,6 +48,16 @@ namespace ProveedoresBackendCSharp.Controllers
         {
             try
             {
+                // Obtener el id y nombre del usuario a partir del token
+                var idClaim = User.Claims.FirstOrDefault(c => c.Type == "id");
+                material.id_solicitante = idClaim != null ? int.Parse(idClaim.Value) : 0;
+                material.id_modificador = material.id_solicitante;
+
+                var nombreClaim = User.Claims.FirstOrDefault(c => c.Type == "nombre");
+                material.nombre_solicitante = nombreClaim != null ? nombreClaim.Value : string.Empty;
+                material.nombre_modificador = material.nombre_solicitante;
+
+                // Guardar el material en la base de datos
                 await materialData.postMaterial(material);
                 return Ok("Material creado exitosamente.");
             }
@@ -68,6 +80,15 @@ namespace ProveedoresBackendCSharp.Controllers
                     return NotFound("Material no encontrado.");
                 }
                 // Si el registro existe, actualizar
+
+                // Obtener el id y nombre del usuario a partir del token
+                var idClaim = User.Claims.FirstOrDefault(c => c.Type == "id");
+                material.id_modificador = idClaim != null ? int.Parse(idClaim.Value) : 0;
+
+                var nombreClaim = User.Claims.FirstOrDefault(c => c.Type == "nombre");
+                material.nombre_modificador = nombreClaim != null ? nombreClaim.Value : string.Empty;
+
+                // Actualizar el registro en la base de datos
                 await materialData.putMaterial(id, material);
                 return Ok("Material modificado exitosamente.");
             }

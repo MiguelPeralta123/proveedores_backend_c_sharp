@@ -23,16 +23,73 @@ namespace ProveedoresBackendCSharp.Data
                         while (await reader.ReadAsync())
                         {
                             var material = new MaterialModel();
-                            material.id_solicitud = (string)reader["id_solicitud"];
-                            material.nombre = (string)reader["nombre"];
-                            material.producto_servicio = (string)reader["producto_servicio"];
-                            material.tipo = (string)reader["tipo"];
+                            material.empresa = (string)reader["empresa"];
+                            material.id_solicitante = (int)reader["id_solicitante"];
+                            material.nombre_solicitante = (string)reader["nombre_solicitante"];
+                            material.fecha_creacion = (DateTime)reader["fecha_creacion"];
+                            material.id_modificador = (int)reader["id_modificador"];
+                            material.nombre_modificador = (string)reader["nombre_modificador"];
+                            material.fecha_modificacion = (DateTime)reader["fecha_modificacion"];
                             material.familia = (string)reader["familia"];
                             material.subfamilia = (string)reader["subfamilia"];
-                            material.unidad_medida = (string)reader["unidad_medida"];
-                            material.aprobado_compras = (bool)reader["aprobado_compras"];
-                            material.aprobado_finanzas = (bool)reader["aprobado_finanzas"];
-                            material.aprobado_sistemas = (bool)reader["aprobado_sistemas"];
+                            if (reader["marca"] != DBNull.Value)
+                            {
+                                material.marca = (string)reader["marca"];
+                            }
+                            material.nombre = (string)reader["nombre"];
+                            if (reader["parte_modelo"] != DBNull.Value)
+                            {
+                                material.parte_modelo = (string)reader["parte_modelo"];
+                            }
+                            if (reader["nombre_comun"] != DBNull.Value)
+                            {
+                                material.nombre_comun = (string)reader["nombre_comun"];
+                            }
+                            if (reader["medida"] != DBNull.Value)
+                            {
+                                material.medida = (string)reader["medida"];
+                            }
+                            if (reader["ing_activo"] != DBNull.Value)
+                            {
+                                material.ing_activo = (string)reader["ing_activo"];
+                            }
+                            if (reader["tipo_producto"] != DBNull.Value)
+                            {
+                                material.tipo_producto = (string)reader["tipo_producto"];
+                            }
+                            if (reader["alias"] != DBNull.Value)
+                            {
+                                material.alias = (string)reader["alias"];
+                            }
+                            material.unidad = (string)reader["unidad"];
+                            if (reader["iva"] != DBNull.Value)
+                            {
+                                material.iva = (string)reader["iva"];
+                            }
+                            if (reader["ieps"] != DBNull.Value)
+                            {
+                                material.ieps = (string)reader["ieps"];
+                            }
+                            if (reader["proposito"] != DBNull.Value)
+                            {
+                                material.proposito = (string)reader["proposito"];
+                            }
+                            if (reader["es_importado"] != DBNull.Value)
+                            {
+                                material.es_importado = (bool)reader["es_importado"];
+                            }
+                            if (reader["es_material_empaque"] != DBNull.Value)
+                            {
+                                material.es_material_empaque = (bool)reader["es_material_empaque"];
+                            }
+                            if (reader["es_prod_terminado"] != DBNull.Value)
+                            {
+                                material.es_prod_terminado = (bool)reader["es_prod_terminado"];
+                            }
+                            material.compras = (bool)reader["compras"];
+                            material.finanzas = (bool)reader["finanzas"];
+                            material.sistemas = (bool)reader["sistemas"];
+                            material.aprobado = (bool)reader["aprobado"];
                             material.rechazado_compras = (bool)reader["rechazado_compras"];
                             material.rechazado_finanzas = (bool)reader["rechazado_finanzas"];
                             material.rechazado_sistemas = (bool)reader["rechazado_sistemas"];
@@ -63,16 +120,73 @@ namespace ProveedoresBackendCSharp.Data
                         while (await reader.ReadAsync())
                         {
                             var material = new MaterialModel();
-                            material.id_solicitud = (string)reader["id_solicitud"];
-                            material.nombre = (string)reader["nombre"];
-                            material.producto_servicio = (string)reader["producto_servicio"];
-                            material.tipo = (string)reader["tipo"];
+                            material.empresa = (string)reader["empresa"];
+                            material.id_solicitante = (int)reader["id_solicitante"];
+                            material.nombre_solicitante = (string)reader["nombre_solicitante"];
+                            material.fecha_creacion = (DateTime)reader["fecha_creacion"];
+                            material.id_modificador = (int)reader["id_modificador"];
+                            material.nombre_modificador = (string)reader["nombre_modificador"];
+                            material.fecha_modificacion = (DateTime)reader["fecha_modificacion"];
                             material.familia = (string)reader["familia"];
                             material.subfamilia = (string)reader["subfamilia"];
-                            material.unidad_medida = (string)reader["unidad_medida"];
-                            material.aprobado_compras = (bool)reader["aprobado_compras"];
-                            material.aprobado_finanzas = (bool)reader["aprobado_finanzas"];
-                            material.aprobado_sistemas = (bool)reader["aprobado_sistemas"];
+                            if (reader["marca"] != DBNull.Value)
+                            {
+                                material.marca = (string)reader["marca"];
+                            }
+                            material.nombre = (string)reader["nombre"];
+                            if (reader["parte_modelo"] != DBNull.Value)
+                            {
+                                material.parte_modelo = (string)reader["parte_modelo"];
+                            }
+                            if (reader["nombre_comun"] != DBNull.Value)
+                            {
+                                material.nombre_comun = (string)reader["nombre_comun"];
+                            }
+                            if (reader["medida"] != DBNull.Value)
+                            {
+                                material.medida = (string)reader["medida"];
+                            }
+                            if (reader["ing_activo"] != DBNull.Value)
+                            {
+                                material.ing_activo = (string)reader["ing_activo"];
+                            }
+                            if (reader["tipo_producto"] != DBNull.Value)
+                            {
+                                material.tipo_producto = (string)reader["tipo_producto"];
+                            }
+                            if (reader["alias"] != DBNull.Value)
+                            {
+                                material.alias = (string)reader["alias"];
+                            }
+                            material.unidad = (string)reader["unidad"];
+                            if (reader["iva"] != DBNull.Value)
+                            {
+                                material.iva = (string)reader["iva"];
+                            }
+                            if (reader["ieps"] != DBNull.Value)
+                            {
+                                material.ieps = (string)reader["ieps"];
+                            }
+                            if (reader["proposito"] != DBNull.Value)
+                            {
+                                material.proposito = (string)reader["proposito"];
+                            }
+                            if (reader["es_importado"] != DBNull.Value)
+                            {
+                                material.es_importado = (bool)reader["es_importado"];
+                            }
+                            if (reader["es_material_empaque"] != DBNull.Value)
+                            {
+                                material.es_material_empaque = (bool)reader["es_material_empaque"];
+                            }
+                            if (reader["es_prod_terminado"] != DBNull.Value)
+                            {
+                                material.es_prod_terminado = (bool)reader["es_prod_terminado"];
+                            }
+                            material.compras = (bool)reader["compras"];
+                            material.finanzas = (bool)reader["finanzas"];
+                            material.sistemas = (bool)reader["sistemas"];
+                            material.aprobado = (bool)reader["aprobado"];
                             material.rechazado_compras = (bool)reader["rechazado_compras"];
                             material.rechazado_finanzas = (bool)reader["rechazado_finanzas"];
                             material.rechazado_sistemas = (bool)reader["rechazado_sistemas"];
@@ -88,6 +202,7 @@ namespace ProveedoresBackendCSharp.Data
             }
         }
 
+        /*
         public async Task<List<MaterialModel>> getMaterialByIdSolicitud(string id_solicitud)
         {
             var list = new List<MaterialModel>();
@@ -127,6 +242,7 @@ namespace ProveedoresBackendCSharp.Data
                 }
             }
         }
+        */
 
         public async Task postMaterial(MaterialModel material)
         {
@@ -135,16 +251,97 @@ namespace ProveedoresBackendCSharp.Data
                 using (var cmd = new SqlCommand("postMaterial", sql))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@id_solicitud", material.id_solicitud);
-                    cmd.Parameters.AddWithValue("@nombre", material.nombre);
-                    cmd.Parameters.AddWithValue("@producto_servicio", material.producto_servicio);
-                    cmd.Parameters.AddWithValue("@tipo", material.tipo);
+                    cmd.Parameters.AddWithValue("@empresa", material.empresa);
+                    cmd.Parameters.AddWithValue("@id_solicitante", material.id_solicitante);
+                    cmd.Parameters.AddWithValue("@nombre_solicitante", material.nombre_solicitante);
+                    cmd.Parameters.AddWithValue("@fecha_creacion", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@id_modificador", material.id_modificador);
+                    cmd.Parameters.AddWithValue("@nombre_modificador", material.nombre_modificador);
+                    cmd.Parameters.AddWithValue("@fecha_modificacion", DateTime.Now);
                     cmd.Parameters.AddWithValue("@familia", material.familia);
                     cmd.Parameters.AddWithValue("@subfamilia", material.subfamilia);
-                    cmd.Parameters.AddWithValue("@unidad_medida", material.unidad_medida);
-                    cmd.Parameters.AddWithValue("@aprobado_compras", false);
-                    cmd.Parameters.AddWithValue("@aprobado_finanzas", false);
-                    cmd.Parameters.AddWithValue("@aprobado_sistemas", false);
+                    if (!string.IsNullOrEmpty(material.marca))
+                    {
+                        cmd.Parameters.AddWithValue("@marca", material.marca);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@marca", DBNull.Value);
+                    }
+                    cmd.Parameters.AddWithValue("@nombre", material.nombre);
+                    if (!string.IsNullOrEmpty(material.parte_modelo))
+                    {
+                        cmd.Parameters.AddWithValue("@parte_modelo", material.parte_modelo);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@parte_modelo", DBNull.Value);
+                    }
+                    if (!string.IsNullOrEmpty(material.nombre_comun))
+                    {
+                        cmd.Parameters.AddWithValue("@nombre_comun", material.nombre_comun);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@nombre_comun", DBNull.Value);
+                    }
+                    if (!string.IsNullOrEmpty(material.medida))
+                    {
+                        cmd.Parameters.AddWithValue("@medida", material.medida);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@medida", DBNull.Value);
+                    }
+                    if (!string.IsNullOrEmpty(material.ing_activo))
+                    {
+                        cmd.Parameters.AddWithValue("@ing_activo", material.ing_activo);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@ing_activo", DBNull.Value);
+                    }
+                    if (!string.IsNullOrEmpty(material.tipo_producto))
+                    {
+                        cmd.Parameters.AddWithValue("@tipo_producto", material.tipo_producto);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@tipo_producto", DBNull.Value);
+                    }
+                    if (!string.IsNullOrEmpty(material.alias))
+                    {
+                        cmd.Parameters.AddWithValue("@alias", material.alias);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@alias", DBNull.Value);
+                    }
+                    cmd.Parameters.AddWithValue("@unidad", material.unidad);
+                    if (!string.IsNullOrEmpty(material.iva))
+                    {
+                        cmd.Parameters.AddWithValue("@iva", material.iva);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@iva", DBNull.Value);
+                    }
+                    if (!string.IsNullOrEmpty(material.ieps))
+                    {
+                        cmd.Parameters.AddWithValue("@ieps", material.ieps);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@ieps", DBNull.Value);
+                    }
+                    cmd.Parameters.AddWithValue("@proposito", material.proposito);
+                    cmd.Parameters.AddWithValue("@es_importado", material.es_importado);
+                    cmd.Parameters.AddWithValue("@es_material_empaque", material.es_material_empaque);
+                    cmd.Parameters.AddWithValue("@es_prod_terminado", material.es_prod_terminado);
+                    cmd.Parameters.AddWithValue("@compras", true);
+                    cmd.Parameters.AddWithValue("@finanzas", false);
+                    cmd.Parameters.AddWithValue("@sistemas", false);
+                    cmd.Parameters.AddWithValue("@aprobado", false);
                     cmd.Parameters.AddWithValue("@rechazado_compras", false);
                     cmd.Parameters.AddWithValue("@rechazado_finanzas", false);
                     cmd.Parameters.AddWithValue("@rechazado_sistemas", false);
@@ -170,18 +367,97 @@ namespace ProveedoresBackendCSharp.Data
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("id", id);
-                    cmd.Parameters.AddWithValue("@nombre", material.nombre);
-                    cmd.Parameters.AddWithValue("@producto_servicio", material.producto_servicio);
-                    cmd.Parameters.AddWithValue("@tipo", material.tipo);
+                    cmd.Parameters.AddWithValue("@empresa", material.empresa);
+                    cmd.Parameters.AddWithValue("@id_modificador", material.id_modificador);
+                    cmd.Parameters.AddWithValue("@nombre_modificador", material.nombre_modificador);
+                    cmd.Parameters.AddWithValue("@fecha_modificacion", DateTime.Now);
                     cmd.Parameters.AddWithValue("@familia", material.familia);
                     cmd.Parameters.AddWithValue("@subfamilia", material.subfamilia);
-                    cmd.Parameters.AddWithValue("@unidad_medida", material.unidad_medida);
-                    cmd.Parameters.AddWithValue("@aprobado_compras", false);
-                    cmd.Parameters.AddWithValue("@aprobado_finanzas", false);
-                    cmd.Parameters.AddWithValue("@aprobado_sistemas", false);
-                    cmd.Parameters.AddWithValue("@rechazado_compras", false);
-                    cmd.Parameters.AddWithValue("@rechazado_finanzas", false);
-                    cmd.Parameters.AddWithValue("@rechazado_sistemas", false);
+                    if (!string.IsNullOrEmpty(material.marca))
+                    {
+                        cmd.Parameters.AddWithValue("@marca", material.marca);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@marca", DBNull.Value);
+                    }
+                    cmd.Parameters.AddWithValue("@nombre", material.nombre);
+                    if (!string.IsNullOrEmpty(material.parte_modelo))
+                    {
+                        cmd.Parameters.AddWithValue("@parte_modelo", material.parte_modelo);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@parte_modelo", DBNull.Value);
+                    }
+                    if (!string.IsNullOrEmpty(material.nombre_comun))
+                    {
+                        cmd.Parameters.AddWithValue("@nombre_comun", material.nombre_comun);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@nombre_comun", DBNull.Value);
+                    }
+                    if (!string.IsNullOrEmpty(material.medida))
+                    {
+                        cmd.Parameters.AddWithValue("@medida", material.medida);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@medida", DBNull.Value);
+                    }
+                    if (!string.IsNullOrEmpty(material.ing_activo))
+                    {
+                        cmd.Parameters.AddWithValue("@ing_activo", material.ing_activo);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@ing_activo", DBNull.Value);
+                    }
+                    if (!string.IsNullOrEmpty(material.tipo_producto))
+                    {
+                        cmd.Parameters.AddWithValue("@tipo_producto", material.tipo_producto);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@tipo_producto", DBNull.Value);
+                    }
+                    if (!string.IsNullOrEmpty(material.alias))
+                    {
+                        cmd.Parameters.AddWithValue("@alias", material.alias);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@alias", DBNull.Value);
+                    }
+                    cmd.Parameters.AddWithValue("@unidad", material.unidad);
+                    if (!string.IsNullOrEmpty(material.iva))
+                    {
+                        cmd.Parameters.AddWithValue("@iva", material.iva);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@iva", DBNull.Value);
+                    }
+                    if (!string.IsNullOrEmpty(material.ieps))
+                    {
+                        cmd.Parameters.AddWithValue("@ieps", material.ieps);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@ieps", DBNull.Value);
+                    }
+                    cmd.Parameters.AddWithValue("@proposito", material.proposito);
+                    cmd.Parameters.AddWithValue("@es_importado", material.es_importado);
+                    cmd.Parameters.AddWithValue("@es_material_empaque", material.es_material_empaque);
+                    cmd.Parameters.AddWithValue("@es_prod_terminado", material.es_prod_terminado);
+                    cmd.Parameters.AddWithValue("@compras", material.compras);
+                    cmd.Parameters.AddWithValue("@finanzas", material.finanzas);
+                    cmd.Parameters.AddWithValue("@sistemas", material.sistemas);
+                    cmd.Parameters.AddWithValue("@aprobado", material.aprobado);
+                    cmd.Parameters.AddWithValue("@rechazado_compras", material.rechazado_compras);
+                    cmd.Parameters.AddWithValue("@rechazado_finanzas", material.rechazado_finanzas);
+                    cmd.Parameters.AddWithValue("@rechazado_sistemas", material.rechazado_sistemas);
                     if (!string.IsNullOrEmpty(material.comentarios))
                     {
                         cmd.Parameters.AddWithValue("@comentarios", material.comentarios);
