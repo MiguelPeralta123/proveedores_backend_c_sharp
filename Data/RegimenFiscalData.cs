@@ -22,7 +22,7 @@ namespace ProveedoresBackendCSharp.Data
                     {
                         while (await reader.ReadAsync())
                         {
-                            var regimen = new RegimenFiscalModel((string)reader["tipo"]);
+                            var regimen = new RegimenFiscalModel((string)reader["descripción"]);
                             list.Add(regimen);
                         }
                         return list;

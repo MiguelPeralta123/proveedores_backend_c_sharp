@@ -25,9 +25,14 @@ namespace ProveedoresBackendCSharp.Data
                             var proveedor = new ProveedorModel();
                             proveedor.id = (int)reader["id"];
                             proveedor.empresa = (string)reader["empresa"];
-                            proveedor.codigo = (string)reader["codigo"];
+                            proveedor.id_solicitante = (int)reader["id_solicitante"];
+                            proveedor.nombre_solicitante = (string)reader["nombre_solicitante"];
+                            proveedor.fecha_creacion = (DateTime)reader["fecha_creacion"];
+                            proveedor.id_modificador = (int)reader["id_modificador"];
+                            proveedor.nombre_modificador = (string)reader["nombre_modificador"];
+                            proveedor.fecha_modificacion = (DateTime)reader["fecha_modificacion"];
                             proveedor.tipo_alta = (string)reader["tipo_alta"];
-                            proveedor.contribuyente = (string)reader["contribuyente"];
+                            proveedor.persona = (string)reader["persona"];
                             proveedor.razon_social = (string)reader["razon_social"];
                             proveedor.rfc = (string)reader["rfc"];
                             if (reader["curp"] != DBNull.Value)
@@ -85,7 +90,6 @@ namespace ProveedoresBackendCSharp.Data
                             proveedor.colonia = (string)reader["colonia"];
                             proveedor.localidad = (string)reader["localidad"];
                             proveedor.municipio = (string)reader["municipio"];
-                            proveedor.ciudad = (string)reader["ciudad"];
                             proveedor.estado = (string)reader["estado"];
                             proveedor.pais = (string)reader["pais"];
                             proveedor.banco = (string)reader["banco"];
@@ -112,17 +116,14 @@ namespace ProveedoresBackendCSharp.Data
                             proveedor.ruta_constancia = (string)reader["ruta_constancia"];
                             proveedor.nombre_estado_cuenta = (string)reader["nombre_estado_cuenta"];
                             proveedor.ruta_estado_cuenta = (string)reader["ruta_estado_cuenta"];
-                            proveedor.aprobado_compras = (bool)reader["aprobado_compras"];
-                            proveedor.aprobado_finanzas = (bool)reader["aprobado_finanzas"];
-                            proveedor.aprobado_sistemas = (bool)reader["aprobado_sistemas"];
-                            proveedor.aprobadas = (bool)reader["aprobadas"];
-                            proveedor.fecha = (DateTime)reader["fecha"];
                             proveedor.usar_portal_prov = (bool)reader["usar_portal_prov"];
                             proveedor.no_aplica_rafaga = (bool)reader["no_aplica_rafaga"];
                             proveedor.no_relacionar_oc = (bool)reader["no_relacionar_oc"];
                             proveedor.folio = (string)reader["folio"];
-                            proveedor.id_solicitante = (int)reader["id_solicitante"];
-                            proveedor.solicitante = (string)reader["solicitante"];
+                            proveedor.compras = (bool)reader["compras"];
+                            proveedor.finanzas = (bool)reader["finanzas"];
+                            proveedor.sistemas = (bool)reader["sistemas"];
+                            proveedor.aprobado = (bool)reader["aprobado"];
                             proveedor.rechazado_compras = (bool)reader["rechazado_compras"];
                             proveedor.rechazado_finanzas = (bool)reader["rechazado_finanzas"];
                             proveedor.rechazado_sistemas = (bool)reader["rechazado_sistemas"];
@@ -155,9 +156,14 @@ namespace ProveedoresBackendCSharp.Data
                             var proveedor = new ProveedorModel();
                             proveedor.id = (int)reader["id"];
                             proveedor.empresa = (string)reader["empresa"];
-                            proveedor.codigo = (string)reader["codigo"];
+                            proveedor.id_solicitante = (int)reader["id_solicitante"];
+                            proveedor.nombre_solicitante = (string)reader["nombre_solicitante"];
+                            proveedor.fecha_creacion = (DateTime)reader["fecha_creacion"];
+                            proveedor.id_modificador = (int)reader["id_modificador"];
+                            proveedor.nombre_modificador = (string)reader["nombre_modificador"];
+                            proveedor.fecha_modificacion = (DateTime)reader["fecha_modificacion"];
                             proveedor.tipo_alta = (string)reader["tipo_alta"];
-                            proveedor.contribuyente = (string)reader["contribuyente"];
+                            proveedor.persona = (string)reader["persona"];
                             proveedor.razon_social = (string)reader["razon_social"];
                             proveedor.rfc = (string)reader["rfc"];
                             if (reader["curp"] != DBNull.Value)
@@ -215,7 +221,6 @@ namespace ProveedoresBackendCSharp.Data
                             proveedor.colonia = (string)reader["colonia"];
                             proveedor.localidad = (string)reader["localidad"];
                             proveedor.municipio = (string)reader["municipio"];
-                            proveedor.ciudad = (string)reader["ciudad"];
                             proveedor.estado = (string)reader["estado"];
                             proveedor.pais = (string)reader["pais"];
                             proveedor.banco = (string)reader["banco"];
@@ -242,17 +247,535 @@ namespace ProveedoresBackendCSharp.Data
                             proveedor.ruta_constancia = (string)reader["ruta_constancia"];
                             proveedor.nombre_estado_cuenta = (string)reader["nombre_estado_cuenta"];
                             proveedor.ruta_estado_cuenta = (string)reader["ruta_estado_cuenta"];
-                            proveedor.aprobado_compras = (bool)reader["aprobado_compras"];
-                            proveedor.aprobado_finanzas = (bool)reader["aprobado_finanzas"];
-                            proveedor.aprobado_sistemas = (bool)reader["aprobado_sistemas"];
-                            proveedor.aprobadas = (bool)reader["aprobadas"];
-                            proveedor.fecha = (DateTime)reader["fecha"];
                             proveedor.usar_portal_prov = (bool)reader["usar_portal_prov"];
                             proveedor.no_aplica_rafaga = (bool)reader["no_aplica_rafaga"];
                             proveedor.no_relacionar_oc = (bool)reader["no_relacionar_oc"];
                             proveedor.folio = (string)reader["folio"];
+                            proveedor.compras = (bool)reader["compras"];
+                            proveedor.finanzas = (bool)reader["finanzas"];
+                            proveedor.sistemas = (bool)reader["sistemas"];
+                            proveedor.aprobado = (bool)reader["aprobado"];
+                            proveedor.rechazado_compras = (bool)reader["rechazado_compras"];
+                            proveedor.rechazado_finanzas = (bool)reader["rechazado_finanzas"];
+                            proveedor.rechazado_sistemas = (bool)reader["rechazado_sistemas"];
+                            if (reader["comentarios"] != DBNull.Value)
+                            {
+                                proveedor.comentarios = (string)reader["comentarios"];
+                            }
+                            list.Add(proveedor);
+                        }
+                        return list;
+                    }
+                }
+            }
+        }
+
+        public async Task<List<ProveedorModel>> getProveedoresCompras()
+        {
+            var list = new List<ProveedorModel>();
+            using (var sql = new SqlConnection(cn.ConnectionString()))
+            {
+                using (var cmd = new SqlCommand("getProveedoresCompras", sql))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    await sql.OpenAsync();
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            var proveedor = new ProveedorModel();
+                            proveedor.id = (int)reader["id"];
+                            proveedor.empresa = (string)reader["empresa"];
                             proveedor.id_solicitante = (int)reader["id_solicitante"];
-                            proveedor.solicitante = (string)reader["solicitante"];
+                            proveedor.nombre_solicitante = (string)reader["nombre_solicitante"];
+                            proveedor.fecha_creacion = (DateTime)reader["fecha_creacion"];
+                            proveedor.id_modificador = (int)reader["id_modificador"];
+                            proveedor.nombre_modificador = (string)reader["nombre_modificador"];
+                            proveedor.fecha_modificacion = (DateTime)reader["fecha_modificacion"];
+                            proveedor.tipo_alta = (string)reader["tipo_alta"];
+                            proveedor.persona = (string)reader["persona"];
+                            proveedor.razon_social = (string)reader["razon_social"];
+                            proveedor.rfc = (string)reader["rfc"];
+                            if (reader["curp"] != DBNull.Value)
+                            {
+                                proveedor.curp = (string)reader["curp"];
+                            }
+                            proveedor.regimen_capital = (string)reader["regimen_capital"];
+                            proveedor.nombre_fiscal = (string)reader["nombre_fiscal"];
+                            proveedor.nombre_comercial = (string)reader["nombre_comercial"];
+                            proveedor.uso_cfdi = (string)reader["uso_cfdi"];
+                            if (reader["representante_legal"] != DBNull.Value)
+                            {
+                                proveedor.representante_legal = (string)reader["representante_legal"];
+                            }
+                            proveedor.telefono_1 = (string)reader["telefono_1"];
+                            if (reader["telefono_2"] != DBNull.Value)
+                            {
+                                proveedor.telefono_2 = (string)reader["telefono_2"];
+                            }
+                            if (reader["contacto"] != DBNull.Value)
+                            {
+                                proveedor.contacto = (string)reader["contacto"];
+                            }
+                            proveedor.grupo = (string)reader["grupo"];
+                            proveedor.correo_general = (string)reader["correo_general"];
+                            proveedor.correo_pagos = (string)reader["correo_pagos"];
+                            if (reader["sitio_web"] != DBNull.Value)
+                            {
+                                proveedor.sitio_web = (string)reader["sitio_web"];
+                            }
+                            proveedor.rubro = (string)reader["rubro"];
+                            proveedor.tipo_operacion = (string)reader["tipo_operacion"];
+                            proveedor.tipo_tercero = (string)reader["tipo_tercero"];
+                            proveedor.id_fiscal = (string)reader["id_fiscal"];
+                            proveedor.regimen_fiscal = (string)reader["regimen_fiscal"];
+                            proveedor.agente_aduanal = (string)reader["agente_aduanal"];
+                            proveedor.reg_inc_fiscal = (string)reader["reg_inc_fiscal"];
+                            proveedor.impuesto_cedular = (string)reader["impuesto_cedular"];
+                            proveedor.venc_s_fecha = (DateTime)reader["venc_s_fecha"];
+                            proveedor.dias_entrega_completa = (int)reader["dias_entrega_completa"];
+                            proveedor.dias_credito = (int)reader["dias_credito"];
+                            proveedor.limite_credito_MN = (decimal)reader["limite_credito_MN"];
+                            proveedor.limite_credito_ME = (decimal)reader["limite_credito_ME"];
+                            proveedor.monto_credito = (decimal)reader["monto_credito"];
+                            proveedor.retencion_iva = (string)reader["retencion_iva"];
+                            proveedor.retencion_isr = (string)reader["retencion_isr"];
+                            proveedor.iva_frontera = (string)reader["iva_frontera"];
+                            proveedor.calle = (string)reader["calle"];
+                            proveedor.numero_exterior = (string)reader["numero_exterior"];
+                            if (reader["numero_interior"] != DBNull.Value)
+                            {
+                                proveedor.numero_interior = (string)reader["numero_interior"];
+                            }
+                            proveedor.codigo_postal = (string)reader["codigo_postal"];
+                            proveedor.colonia = (string)reader["colonia"];
+                            proveedor.localidad = (string)reader["localidad"];
+                            proveedor.municipio = (string)reader["municipio"];
+                            proveedor.estado = (string)reader["estado"];
+                            proveedor.pais = (string)reader["pais"];
+                            proveedor.banco = (string)reader["banco"];
+                            proveedor.cuenta = (string)reader["cuenta"];
+                            proveedor.moneda = (string)reader["moneda"];
+                            proveedor.clabe = (string)reader["clabe"];
+                            if (reader["banco_2"] != DBNull.Value)
+                            {
+                                proveedor.banco_2 = (string)reader["banco_2"];
+                            }
+                            if (reader["cuenta_2"] != DBNull.Value)
+                            {
+                                proveedor.cuenta_2 = (string)reader["cuenta_2"];
+                            }
+                            if (reader["moneda_2"] != DBNull.Value)
+                            {
+                                proveedor.moneda_2 = (string)reader["moneda_2"];
+                            }
+                            if (reader["clabe_2"] != DBNull.Value)
+                            {
+                                proveedor.clabe_2 = (string)reader["clabe_2"];
+                            }
+                            proveedor.nombre_constancia = (string)reader["nombre_constancia"];
+                            proveedor.ruta_constancia = (string)reader["ruta_constancia"];
+                            proveedor.nombre_estado_cuenta = (string)reader["nombre_estado_cuenta"];
+                            proveedor.ruta_estado_cuenta = (string)reader["ruta_estado_cuenta"];
+                            proveedor.usar_portal_prov = (bool)reader["usar_portal_prov"];
+                            proveedor.no_aplica_rafaga = (bool)reader["no_aplica_rafaga"];
+                            proveedor.no_relacionar_oc = (bool)reader["no_relacionar_oc"];
+                            proveedor.folio = (string)reader["folio"];
+                            proveedor.compras = (bool)reader["compras"];
+                            proveedor.finanzas = (bool)reader["finanzas"];
+                            proveedor.sistemas = (bool)reader["sistemas"];
+                            proveedor.aprobado = (bool)reader["aprobado"];
+                            proveedor.rechazado_compras = (bool)reader["rechazado_compras"];
+                            proveedor.rechazado_finanzas = (bool)reader["rechazado_finanzas"];
+                            proveedor.rechazado_sistemas = (bool)reader["rechazado_sistemas"];
+                            if (reader["comentarios"] != DBNull.Value)
+                            {
+                                proveedor.comentarios = (string)reader["comentarios"];
+                            }
+                            list.Add(proveedor);
+                        }
+                        return list;
+                    }
+                }
+            }
+        }
+
+        public async Task<List<ProveedorModel>> getProveedoresFinanzas()
+        {
+            var list = new List<ProveedorModel>();
+            using (var sql = new SqlConnection(cn.ConnectionString()))
+            {
+                using (var cmd = new SqlCommand("getProveedoresFinanzas", sql))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    await sql.OpenAsync();
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            var proveedor = new ProveedorModel();
+                            proveedor.id = (int)reader["id"];
+                            proveedor.empresa = (string)reader["empresa"];
+                            proveedor.id_solicitante = (int)reader["id_solicitante"];
+                            proveedor.nombre_solicitante = (string)reader["nombre_solicitante"];
+                            proveedor.fecha_creacion = (DateTime)reader["fecha_creacion"];
+                            proveedor.id_modificador = (int)reader["id_modificador"];
+                            proveedor.nombre_modificador = (string)reader["nombre_modificador"];
+                            proveedor.fecha_modificacion = (DateTime)reader["fecha_modificacion"];
+                            proveedor.tipo_alta = (string)reader["tipo_alta"];
+                            proveedor.persona = (string)reader["persona"];
+                            proveedor.razon_social = (string)reader["razon_social"];
+                            proveedor.rfc = (string)reader["rfc"];
+                            if (reader["curp"] != DBNull.Value)
+                            {
+                                proveedor.curp = (string)reader["curp"];
+                            }
+                            proveedor.regimen_capital = (string)reader["regimen_capital"];
+                            proveedor.nombre_fiscal = (string)reader["nombre_fiscal"];
+                            proveedor.nombre_comercial = (string)reader["nombre_comercial"];
+                            proveedor.uso_cfdi = (string)reader["uso_cfdi"];
+                            if (reader["representante_legal"] != DBNull.Value)
+                            {
+                                proveedor.representante_legal = (string)reader["representante_legal"];
+                            }
+                            proveedor.telefono_1 = (string)reader["telefono_1"];
+                            if (reader["telefono_2"] != DBNull.Value)
+                            {
+                                proveedor.telefono_2 = (string)reader["telefono_2"];
+                            }
+                            if (reader["contacto"] != DBNull.Value)
+                            {
+                                proveedor.contacto = (string)reader["contacto"];
+                            }
+                            proveedor.grupo = (string)reader["grupo"];
+                            proveedor.correo_general = (string)reader["correo_general"];
+                            proveedor.correo_pagos = (string)reader["correo_pagos"];
+                            if (reader["sitio_web"] != DBNull.Value)
+                            {
+                                proveedor.sitio_web = (string)reader["sitio_web"];
+                            }
+                            proveedor.rubro = (string)reader["rubro"];
+                            proveedor.tipo_operacion = (string)reader["tipo_operacion"];
+                            proveedor.tipo_tercero = (string)reader["tipo_tercero"];
+                            proveedor.id_fiscal = (string)reader["id_fiscal"];
+                            proveedor.regimen_fiscal = (string)reader["regimen_fiscal"];
+                            proveedor.agente_aduanal = (string)reader["agente_aduanal"];
+                            proveedor.reg_inc_fiscal = (string)reader["reg_inc_fiscal"];
+                            proveedor.impuesto_cedular = (string)reader["impuesto_cedular"];
+                            proveedor.venc_s_fecha = (DateTime)reader["venc_s_fecha"];
+                            proveedor.dias_entrega_completa = (int)reader["dias_entrega_completa"];
+                            proveedor.dias_credito = (int)reader["dias_credito"];
+                            proveedor.limite_credito_MN = (decimal)reader["limite_credito_MN"];
+                            proveedor.limite_credito_ME = (decimal)reader["limite_credito_ME"];
+                            proveedor.monto_credito = (decimal)reader["monto_credito"];
+                            proveedor.retencion_iva = (string)reader["retencion_iva"];
+                            proveedor.retencion_isr = (string)reader["retencion_isr"];
+                            proveedor.iva_frontera = (string)reader["iva_frontera"];
+                            proveedor.calle = (string)reader["calle"];
+                            proveedor.numero_exterior = (string)reader["numero_exterior"];
+                            if (reader["numero_interior"] != DBNull.Value)
+                            {
+                                proveedor.numero_interior = (string)reader["numero_interior"];
+                            }
+                            proveedor.codigo_postal = (string)reader["codigo_postal"];
+                            proveedor.colonia = (string)reader["colonia"];
+                            proveedor.localidad = (string)reader["localidad"];
+                            proveedor.municipio = (string)reader["municipio"];
+                            proveedor.estado = (string)reader["estado"];
+                            proveedor.pais = (string)reader["pais"];
+                            proveedor.banco = (string)reader["banco"];
+                            proveedor.cuenta = (string)reader["cuenta"];
+                            proveedor.moneda = (string)reader["moneda"];
+                            proveedor.clabe = (string)reader["clabe"];
+                            if (reader["banco_2"] != DBNull.Value)
+                            {
+                                proveedor.banco_2 = (string)reader["banco_2"];
+                            }
+                            if (reader["cuenta_2"] != DBNull.Value)
+                            {
+                                proveedor.cuenta_2 = (string)reader["cuenta_2"];
+                            }
+                            if (reader["moneda_2"] != DBNull.Value)
+                            {
+                                proveedor.moneda_2 = (string)reader["moneda_2"];
+                            }
+                            if (reader["clabe_2"] != DBNull.Value)
+                            {
+                                proveedor.clabe_2 = (string)reader["clabe_2"];
+                            }
+                            proveedor.nombre_constancia = (string)reader["nombre_constancia"];
+                            proveedor.ruta_constancia = (string)reader["ruta_constancia"];
+                            proveedor.nombre_estado_cuenta = (string)reader["nombre_estado_cuenta"];
+                            proveedor.ruta_estado_cuenta = (string)reader["ruta_estado_cuenta"];
+                            proveedor.usar_portal_prov = (bool)reader["usar_portal_prov"];
+                            proveedor.no_aplica_rafaga = (bool)reader["no_aplica_rafaga"];
+                            proveedor.no_relacionar_oc = (bool)reader["no_relacionar_oc"];
+                            proveedor.folio = (string)reader["folio"];
+                            proveedor.compras = (bool)reader["compras"];
+                            proveedor.finanzas = (bool)reader["finanzas"];
+                            proveedor.sistemas = (bool)reader["sistemas"];
+                            proveedor.aprobado = (bool)reader["aprobado"];
+                            proveedor.rechazado_compras = (bool)reader["rechazado_compras"];
+                            proveedor.rechazado_finanzas = (bool)reader["rechazado_finanzas"];
+                            proveedor.rechazado_sistemas = (bool)reader["rechazado_sistemas"];
+                            if (reader["comentarios"] != DBNull.Value)
+                            {
+                                proveedor.comentarios = (string)reader["comentarios"];
+                            }
+                            list.Add(proveedor);
+                        }
+                        return list;
+                    }
+                }
+            }
+        }
+
+        public async Task<List<ProveedorModel>> getProveedoresSistemas()
+        {
+            var list = new List<ProveedorModel>();
+            using (var sql = new SqlConnection(cn.ConnectionString()))
+            {
+                using (var cmd = new SqlCommand("getProveedoresSistemas", sql))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    await sql.OpenAsync();
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            var proveedor = new ProveedorModel();
+                            proveedor.id = (int)reader["id"];
+                            proveedor.empresa = (string)reader["empresa"];
+                            proveedor.id_solicitante = (int)reader["id_solicitante"];
+                            proveedor.nombre_solicitante = (string)reader["nombre_solicitante"];
+                            proveedor.fecha_creacion = (DateTime)reader["fecha_creacion"];
+                            proveedor.id_modificador = (int)reader["id_modificador"];
+                            proveedor.nombre_modificador = (string)reader["nombre_modificador"];
+                            proveedor.fecha_modificacion = (DateTime)reader["fecha_modificacion"];
+                            proveedor.tipo_alta = (string)reader["tipo_alta"];
+                            proveedor.persona = (string)reader["persona"];
+                            proveedor.razon_social = (string)reader["razon_social"];
+                            proveedor.rfc = (string)reader["rfc"];
+                            if (reader["curp"] != DBNull.Value)
+                            {
+                                proveedor.curp = (string)reader["curp"];
+                            }
+                            proveedor.regimen_capital = (string)reader["regimen_capital"];
+                            proveedor.nombre_fiscal = (string)reader["nombre_fiscal"];
+                            proveedor.nombre_comercial = (string)reader["nombre_comercial"];
+                            proveedor.uso_cfdi = (string)reader["uso_cfdi"];
+                            if (reader["representante_legal"] != DBNull.Value)
+                            {
+                                proveedor.representante_legal = (string)reader["representante_legal"];
+                            }
+                            proveedor.telefono_1 = (string)reader["telefono_1"];
+                            if (reader["telefono_2"] != DBNull.Value)
+                            {
+                                proveedor.telefono_2 = (string)reader["telefono_2"];
+                            }
+                            if (reader["contacto"] != DBNull.Value)
+                            {
+                                proveedor.contacto = (string)reader["contacto"];
+                            }
+                            proveedor.grupo = (string)reader["grupo"];
+                            proveedor.correo_general = (string)reader["correo_general"];
+                            proveedor.correo_pagos = (string)reader["correo_pagos"];
+                            if (reader["sitio_web"] != DBNull.Value)
+                            {
+                                proveedor.sitio_web = (string)reader["sitio_web"];
+                            }
+                            proveedor.rubro = (string)reader["rubro"];
+                            proveedor.tipo_operacion = (string)reader["tipo_operacion"];
+                            proveedor.tipo_tercero = (string)reader["tipo_tercero"];
+                            proveedor.id_fiscal = (string)reader["id_fiscal"];
+                            proveedor.regimen_fiscal = (string)reader["regimen_fiscal"];
+                            proveedor.agente_aduanal = (string)reader["agente_aduanal"];
+                            proveedor.reg_inc_fiscal = (string)reader["reg_inc_fiscal"];
+                            proveedor.impuesto_cedular = (string)reader["impuesto_cedular"];
+                            proveedor.venc_s_fecha = (DateTime)reader["venc_s_fecha"];
+                            proveedor.dias_entrega_completa = (int)reader["dias_entrega_completa"];
+                            proveedor.dias_credito = (int)reader["dias_credito"];
+                            proveedor.limite_credito_MN = (decimal)reader["limite_credito_MN"];
+                            proveedor.limite_credito_ME = (decimal)reader["limite_credito_ME"];
+                            proveedor.monto_credito = (decimal)reader["monto_credito"];
+                            proveedor.retencion_iva = (string)reader["retencion_iva"];
+                            proveedor.retencion_isr = (string)reader["retencion_isr"];
+                            proveedor.iva_frontera = (string)reader["iva_frontera"];
+                            proveedor.calle = (string)reader["calle"];
+                            proveedor.numero_exterior = (string)reader["numero_exterior"];
+                            if (reader["numero_interior"] != DBNull.Value)
+                            {
+                                proveedor.numero_interior = (string)reader["numero_interior"];
+                            }
+                            proveedor.codigo_postal = (string)reader["codigo_postal"];
+                            proveedor.colonia = (string)reader["colonia"];
+                            proveedor.localidad = (string)reader["localidad"];
+                            proveedor.municipio = (string)reader["municipio"];
+                            proveedor.estado = (string)reader["estado"];
+                            proveedor.pais = (string)reader["pais"];
+                            proveedor.banco = (string)reader["banco"];
+                            proveedor.cuenta = (string)reader["cuenta"];
+                            proveedor.moneda = (string)reader["moneda"];
+                            proveedor.clabe = (string)reader["clabe"];
+                            if (reader["banco_2"] != DBNull.Value)
+                            {
+                                proveedor.banco_2 = (string)reader["banco_2"];
+                            }
+                            if (reader["cuenta_2"] != DBNull.Value)
+                            {
+                                proveedor.cuenta_2 = (string)reader["cuenta_2"];
+                            }
+                            if (reader["moneda_2"] != DBNull.Value)
+                            {
+                                proveedor.moneda_2 = (string)reader["moneda_2"];
+                            }
+                            if (reader["clabe_2"] != DBNull.Value)
+                            {
+                                proveedor.clabe_2 = (string)reader["clabe_2"];
+                            }
+                            proveedor.nombre_constancia = (string)reader["nombre_constancia"];
+                            proveedor.ruta_constancia = (string)reader["ruta_constancia"];
+                            proveedor.nombre_estado_cuenta = (string)reader["nombre_estado_cuenta"];
+                            proveedor.ruta_estado_cuenta = (string)reader["ruta_estado_cuenta"];
+                            proveedor.usar_portal_prov = (bool)reader["usar_portal_prov"];
+                            proveedor.no_aplica_rafaga = (bool)reader["no_aplica_rafaga"];
+                            proveedor.no_relacionar_oc = (bool)reader["no_relacionar_oc"];
+                            proveedor.folio = (string)reader["folio"];
+                            proveedor.compras = (bool)reader["compras"];
+                            proveedor.finanzas = (bool)reader["finanzas"];
+                            proveedor.sistemas = (bool)reader["sistemas"];
+                            proveedor.aprobado = (bool)reader["aprobado"];
+                            proveedor.rechazado_compras = (bool)reader["rechazado_compras"];
+                            proveedor.rechazado_finanzas = (bool)reader["rechazado_finanzas"];
+                            proveedor.rechazado_sistemas = (bool)reader["rechazado_sistemas"];
+                            if (reader["comentarios"] != DBNull.Value)
+                            {
+                                proveedor.comentarios = (string)reader["comentarios"];
+                            }
+                            list.Add(proveedor);
+                        }
+                        return list;
+                    }
+                }
+            }
+        }
+
+        public async Task<List<ProveedorModel>> getProveedoresByIdSolicitante(int id_solicitante)
+        {
+            var list = new List<ProveedorModel>();
+            using (var sql = new SqlConnection(cn.ConnectionString()))
+            {
+                using (var cmd = new SqlCommand("getProveedoresByIdSolicitante", sql))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("id_solicitante", id_solicitante);
+                    await sql.OpenAsync();
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            var proveedor = new ProveedorModel();
+                            proveedor.id = (int)reader["id"];
+                            proveedor.empresa = (string)reader["empresa"];
+                            proveedor.id_solicitante = (int)reader["id_solicitante"];
+                            proveedor.nombre_solicitante = (string)reader["nombre_solicitante"];
+                            proveedor.fecha_creacion = (DateTime)reader["fecha_creacion"];
+                            proveedor.id_modificador = (int)reader["id_modificador"];
+                            proveedor.nombre_modificador = (string)reader["nombre_modificador"];
+                            proveedor.fecha_modificacion = (DateTime)reader["fecha_modificacion"];
+                            proveedor.tipo_alta = (string)reader["tipo_alta"];
+                            proveedor.persona = (string)reader["persona"];
+                            proveedor.razon_social = (string)reader["razon_social"];
+                            proveedor.rfc = (string)reader["rfc"];
+                            if (reader["curp"] != DBNull.Value)
+                            {
+                                proveedor.curp = (string)reader["curp"];
+                            }
+                            proveedor.regimen_capital = (string)reader["regimen_capital"];
+                            proveedor.nombre_fiscal = (string)reader["nombre_fiscal"];
+                            proveedor.nombre_comercial = (string)reader["nombre_comercial"];
+                            proveedor.uso_cfdi = (string)reader["uso_cfdi"];
+                            if (reader["representante_legal"] != DBNull.Value)
+                            {
+                                proveedor.representante_legal = (string)reader["representante_legal"];
+                            }
+                            proveedor.telefono_1 = (string)reader["telefono_1"];
+                            if (reader["telefono_2"] != DBNull.Value)
+                            {
+                                proveedor.telefono_2 = (string)reader["telefono_2"];
+                            }
+                            if (reader["contacto"] != DBNull.Value)
+                            {
+                                proveedor.contacto = (string)reader["contacto"];
+                            }
+                            proveedor.grupo = (string)reader["grupo"];
+                            proveedor.correo_general = (string)reader["correo_general"];
+                            proveedor.correo_pagos = (string)reader["correo_pagos"];
+                            if (reader["sitio_web"] != DBNull.Value)
+                            {
+                                proveedor.sitio_web = (string)reader["sitio_web"];
+                            }
+                            proveedor.rubro = (string)reader["rubro"];
+                            proveedor.tipo_operacion = (string)reader["tipo_operacion"];
+                            proveedor.tipo_tercero = (string)reader["tipo_tercero"];
+                            proveedor.id_fiscal = (string)reader["id_fiscal"];
+                            proveedor.regimen_fiscal = (string)reader["regimen_fiscal"];
+                            proveedor.agente_aduanal = (string)reader["agente_aduanal"];
+                            proveedor.reg_inc_fiscal = (string)reader["reg_inc_fiscal"];
+                            proveedor.impuesto_cedular = (string)reader["impuesto_cedular"];
+                            proveedor.venc_s_fecha = (DateTime)reader["venc_s_fecha"];
+                            proveedor.dias_entrega_completa = (int)reader["dias_entrega_completa"];
+                            proveedor.dias_credito = (int)reader["dias_credito"];
+                            proveedor.limite_credito_MN = (decimal)reader["limite_credito_MN"];
+                            proveedor.limite_credito_ME = (decimal)reader["limite_credito_ME"];
+                            proveedor.monto_credito = (decimal)reader["monto_credito"];
+                            proveedor.retencion_iva = (string)reader["retencion_iva"];
+                            proveedor.retencion_isr = (string)reader["retencion_isr"];
+                            proveedor.iva_frontera = (string)reader["iva_frontera"];
+                            proveedor.calle = (string)reader["calle"];
+                            proveedor.numero_exterior = (string)reader["numero_exterior"];
+                            if (reader["numero_interior"] != DBNull.Value)
+                            {
+                                proveedor.numero_interior = (string)reader["numero_interior"];
+                            }
+                            proveedor.codigo_postal = (string)reader["codigo_postal"];
+                            proveedor.colonia = (string)reader["colonia"];
+                            proveedor.localidad = (string)reader["localidad"];
+                            proveedor.municipio = (string)reader["municipio"];
+                            proveedor.estado = (string)reader["estado"];
+                            proveedor.pais = (string)reader["pais"];
+                            proveedor.banco = (string)reader["banco"];
+                            proveedor.cuenta = (string)reader["cuenta"];
+                            proveedor.moneda = (string)reader["moneda"];
+                            proveedor.clabe = (string)reader["clabe"];
+                            if (reader["banco_2"] != DBNull.Value)
+                            {
+                                proveedor.banco_2 = (string)reader["banco_2"];
+                            }
+                            if (reader["cuenta_2"] != DBNull.Value)
+                            {
+                                proveedor.cuenta_2 = (string)reader["cuenta_2"];
+                            }
+                            if (reader["moneda_2"] != DBNull.Value)
+                            {
+                                proveedor.moneda_2 = (string)reader["moneda_2"];
+                            }
+                            if (reader["clabe_2"] != DBNull.Value)
+                            {
+                                proveedor.clabe_2 = (string)reader["clabe_2"];
+                            }
+                            proveedor.nombre_constancia = (string)reader["nombre_constancia"];
+                            proveedor.ruta_constancia = (string)reader["ruta_constancia"];
+                            proveedor.nombre_estado_cuenta = (string)reader["nombre_estado_cuenta"];
+                            proveedor.ruta_estado_cuenta = (string)reader["ruta_estado_cuenta"];
+                            proveedor.usar_portal_prov = (bool)reader["usar_portal_prov"];
+                            proveedor.no_aplica_rafaga = (bool)reader["no_aplica_rafaga"];
+                            proveedor.no_relacionar_oc = (bool)reader["no_relacionar_oc"];
+                            proveedor.folio = (string)reader["folio"];
+                            proveedor.compras = (bool)reader["compras"];
+                            proveedor.finanzas = (bool)reader["finanzas"];
+                            proveedor.sistemas = (bool)reader["sistemas"];
+                            proveedor.aprobado = (bool)reader["aprobado"];
                             proveedor.rechazado_compras = (bool)reader["rechazado_compras"];
                             proveedor.rechazado_finanzas = (bool)reader["rechazado_finanzas"];
                             proveedor.rechazado_sistemas = (bool)reader["rechazado_sistemas"];
@@ -276,9 +799,14 @@ namespace ProveedoresBackendCSharp.Data
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@empresa", proveedor.empresa);
-                    cmd.Parameters.AddWithValue("@codigo", proveedor.codigo);
+                    cmd.Parameters.AddWithValue("@id_solicitante", proveedor.id_solicitante);
+                    cmd.Parameters.AddWithValue("@nombre_solicitante", proveedor.nombre_solicitante);
+                    cmd.Parameters.AddWithValue("fecha_creacion", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@id_modificador", proveedor.id_modificador);
+                    cmd.Parameters.AddWithValue("@nombre_modificador", proveedor.nombre_modificador);
+                    cmd.Parameters.AddWithValue("fecha_modificacion", DateTime.Now);
                     cmd.Parameters.AddWithValue("@tipo_alta", proveedor.tipo_alta);
-                    cmd.Parameters.AddWithValue("@contribuyente", proveedor.contribuyente);
+                    cmd.Parameters.AddWithValue("@persona", proveedor.persona);
                     cmd.Parameters.AddWithValue("@razon_social", proveedor.razon_social);
                     cmd.Parameters.AddWithValue("@rfc", proveedor.rfc);
                     if (!string.IsNullOrEmpty(proveedor.curp))
@@ -360,7 +888,6 @@ namespace ProveedoresBackendCSharp.Data
                     cmd.Parameters.AddWithValue("@colonia", proveedor.colonia);
                     cmd.Parameters.AddWithValue("@localidad", proveedor.localidad);
                     cmd.Parameters.AddWithValue("@municipio", proveedor.municipio);
-                    cmd.Parameters.AddWithValue("@ciudad", proveedor.ciudad);
                     cmd.Parameters.AddWithValue("@estado", proveedor.estado);
                     cmd.Parameters.AddWithValue("@pais", proveedor.pais);
                     cmd.Parameters.AddWithValue("@banco", proveedor.banco);
@@ -403,17 +930,14 @@ namespace ProveedoresBackendCSharp.Data
                     cmd.Parameters.AddWithValue("@ruta_constancia", proveedor.ruta_constancia);
                     cmd.Parameters.AddWithValue("@nombre_estado_cuenta", proveedor.nombre_estado_cuenta);
                     cmd.Parameters.AddWithValue("@ruta_estado_cuenta", proveedor.ruta_estado_cuenta);
-                    cmd.Parameters.AddWithValue("@aprobado_compras", false);
-                    cmd.Parameters.AddWithValue("@aprobado_finanzas", false);
-                    cmd.Parameters.AddWithValue("@aprobado_sistemas", false);
-                    cmd.Parameters.AddWithValue("@aprobadas", false);
-                    cmd.Parameters.AddWithValue("@fecha", DateTime.Now);
                     cmd.Parameters.AddWithValue("@usar_portal_prov", proveedor.usar_portal_prov);
                     cmd.Parameters.AddWithValue("@no_aplica_rafaga", proveedor.no_aplica_rafaga);
                     cmd.Parameters.AddWithValue("@no_relacionar_oc", proveedor.no_relacionar_oc);
                     cmd.Parameters.AddWithValue("@folio", proveedor.folio);
-                    cmd.Parameters.AddWithValue("@id_solicitante", proveedor.id_solicitante);
-                    cmd.Parameters.AddWithValue("@solicitante", proveedor.solicitante);
+                    cmd.Parameters.AddWithValue("@compras", true);
+                    cmd.Parameters.AddWithValue("@finanzas", false);
+                    cmd.Parameters.AddWithValue("@sistemas", false);
+                    cmd.Parameters.AddWithValue("@aprobado", false);
                     cmd.Parameters.AddWithValue("@rechazado_compras", false);
                     cmd.Parameters.AddWithValue("@rechazado_finanzas", false);
                     cmd.Parameters.AddWithValue("@rechazado_sistemas", false);
@@ -440,9 +964,11 @@ namespace ProveedoresBackendCSharp.Data
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("id", id);
                     cmd.Parameters.AddWithValue("@empresa", proveedor.empresa);
-                    cmd.Parameters.AddWithValue("@codigo", proveedor.codigo);
+                    cmd.Parameters.AddWithValue("@id_modificador", proveedor.id_modificador);
+                    cmd.Parameters.AddWithValue("@nombre_modificador", proveedor.nombre_modificador);
+                    cmd.Parameters.AddWithValue("fecha_modificacion", DateTime.Now);
                     cmd.Parameters.AddWithValue("@tipo_alta", proveedor.tipo_alta);
-                    cmd.Parameters.AddWithValue("@contribuyente", proveedor.contribuyente);
+                    cmd.Parameters.AddWithValue("@persona", proveedor.persona);
                     cmd.Parameters.AddWithValue("@razon_social", proveedor.razon_social);
                     cmd.Parameters.AddWithValue("@rfc", proveedor.rfc);
                     if (!string.IsNullOrEmpty(proveedor.curp))
@@ -524,7 +1050,6 @@ namespace ProveedoresBackendCSharp.Data
                     cmd.Parameters.AddWithValue("@colonia", proveedor.colonia);
                     cmd.Parameters.AddWithValue("@localidad", proveedor.localidad);
                     cmd.Parameters.AddWithValue("@municipio", proveedor.municipio);
-                    cmd.Parameters.AddWithValue("@ciudad", proveedor.ciudad);
                     cmd.Parameters.AddWithValue("@estado", proveedor.estado);
                     cmd.Parameters.AddWithValue("@pais", proveedor.pais);
                     cmd.Parameters.AddWithValue("@banco", proveedor.banco);
@@ -563,17 +1088,16 @@ namespace ProveedoresBackendCSharp.Data
                     {
                         cmd.Parameters.AddWithValue("@clabe_2", DBNull.Value);
                     }
-                    cmd.Parameters.AddWithValue("@aprobado_compras", proveedor.aprobado_compras);
-                    cmd.Parameters.AddWithValue("@aprobado_finanzas", proveedor.aprobado_finanzas);
-                    cmd.Parameters.AddWithValue("@aprobado_sistemas", proveedor.aprobado_sistemas);
-                    cmd.Parameters.AddWithValue("@aprobadas", proveedor.aprobadas);
-                    cmd.Parameters.AddWithValue("@fecha", DateTime.Now);
                     cmd.Parameters.AddWithValue("@usar_portal_prov", proveedor.usar_portal_prov);
                     cmd.Parameters.AddWithValue("@no_aplica_rafaga", proveedor.no_aplica_rafaga);
                     cmd.Parameters.AddWithValue("@no_relacionar_oc", proveedor.no_relacionar_oc);
-                    cmd.Parameters.AddWithValue("@rechazado_compras", proveedor.rechazado_compras);
-                    cmd.Parameters.AddWithValue("@rechazado_finanzas", proveedor.rechazado_finanzas);
-                    cmd.Parameters.AddWithValue("@rechazado_sistemas", proveedor.rechazado_sistemas);
+                    cmd.Parameters.AddWithValue("@compras", true);
+                    cmd.Parameters.AddWithValue("@finanzas", false);
+                    cmd.Parameters.AddWithValue("@sistemas", false);
+                    cmd.Parameters.AddWithValue("@aprobado", false);
+                    cmd.Parameters.AddWithValue("@rechazado_compras", false);
+                    cmd.Parameters.AddWithValue("@rechazado_finanzas", false);
+                    cmd.Parameters.AddWithValue("@rechazado_sistemas", false);
                     if (!string.IsNullOrEmpty(proveedor.comentarios))
                     {
                         cmd.Parameters.AddWithValue("@comentarios", proveedor.comentarios);

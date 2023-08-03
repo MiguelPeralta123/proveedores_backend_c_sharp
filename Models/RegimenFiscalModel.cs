@@ -2,10 +2,10 @@
 {
     public class RegimenFiscalModel
     {
-        public RegimenFiscalModel(string tipo)
+        public RegimenFiscalModel(string descripcion)
         {
-            this.tipo = tipo;
+            this.descripcion = descripcion;
         }
-        public string tipo { get; set; }
+        public string descripcion { get; set; }
     }
 }

@@ -24,9 +24,9 @@
         public string? iva { get; set; }
         public string? ieps { get; set; }
         public string proposito { get; set; }
-        public bool? es_importado { get; set; }
-        public bool? es_material_empaque { get; set; }
-        public bool? es_prod_terminado { get; set; }
+        public bool es_importado { get; set; }
+        public bool es_material_empaque { get; set; }
+        public bool es_prod_terminado { get; set; }
         public bool compras { get; set; }
         public bool finanzas { get; set; }
         public bool sistemas { get; set; }

@@ -5,9 +5,14 @@
         public ProveedorModel() { }
         public int id { get; set; }
         public string empresa { get; set; }
-        public string codigo { get; set; }
+        public int? id_solicitante { get; set; }
+        public string? nombre_solicitante { get; set; }
+        public DateTime fecha_creacion { get; set; }
+        public int? id_modificador { get; set; }
+        public string? nombre_modificador { get; set; }
+        public DateTime fecha_modificacion { get; set; }
         public string tipo_alta { get; set; }
-        public string contribuyente { get; set; }
+        public string persona { get; set; }
         public string razon_social { get; set; }
         public string rfc { get; set; }
         public string? curp { get; set; }
@@ -47,7 +52,6 @@
         public string colonia { get; set; }
         public string localidad { get; set; }
         public string municipio { get; set; }
-        public string ciudad { get; set; }
         public string estado { get; set; }
         public string pais { get; set; }
         public string banco { get; set; }
@@ -62,17 +66,14 @@
         public string? ruta_constancia { get; set; }
         public string? nombre_estado_cuenta { get; set; }
         public string? ruta_estado_cuenta { get; set; }
-        public bool aprobado_compras { get; set; }
-        public bool aprobado_finanzas { get; set; }
-        public bool aprobado_sistemas { get; set; }
-        public bool aprobadas { get; set; }
-        public DateTime fecha { get; set; }
         public bool usar_portal_prov { get; set; }
         public bool no_aplica_rafaga { get; set; }
         public bool no_relacionar_oc { get; set; }
         public string folio { get; set; }
-        public int? id_solicitante { get; set; }
-        public string? solicitante { get; set; }
+        public bool compras { get; set; }
+        public bool finanzas { get; set; }
+        public bool sistemas { get; set; }
+        public bool aprobado { get; set; }
         public bool rechazado_compras { get; set; }
         public bool rechazado_finanzas { get; set; }
         public bool rechazado_sistemas { get; set; }

@@ -22,8 +22,40 @@ namespace ProveedoresBackendCSharp.Controllers
         [Authorize]
         public async Task<ActionResult<List<ProveedorModel>>> getProveedores()
         {
-            var list = await proveedorData.getProveedores();
-            return list;
+            // Obtener la informacion del usuario a partir del token
+            var idClaim = User.Claims.FirstOrDefault(c => c.Type == "id");
+            var id_solicitante = idClaim != null ? int.Parse(idClaim.Value) : 0;
+            var comprasClaim = User.Claims.FirstOrDefault(c => c.Type == "aprob_compras");
+            var esCompras = comprasClaim != null ? bool.Parse(comprasClaim.Value) : false;
+            var finanzasClaim = User.Claims.FirstOrDefault(c => c.Type == "aprob_finanzas");
+            var esFinanzas = finanzasClaim != null ? bool.Parse(finanzasClaim.Value) : false;
+            var sistemasClaim = User.Claims.FirstOrDefault(c => c.Type == "aprob_sistemas");
+            var esSistemas = sistemasClaim != null ? bool.Parse(sistemasClaim.Value) : false;
+
+            // Verificar si el solicitante es aprobador de compras
+            if (esCompras)
+            {
+                var list = await proveedorData.getProveedoresCompras();
+                return list;
+            }
+            // Verificar si el solicitante es aprobador de finanzas
+            if (esFinanzas)
+            {
+                var list = await proveedorData.getProveedoresFinanzas();
+                return list;
+            }
+            // Verificar si el solicitante es aprobador de sistemas
+            if (esSistemas)
+            {
+                var list = await proveedorData.getProveedoresSistemas();
+                return list;
+            }
+            // Si es un usuario normal, podrá ver solo sus solicitudes
+            else
+            {
+                var list = await proveedorData.getProveedoresByIdSolicitante(id_solicitante);
+                return list;
+            }
         }
 
         [HttpGet("{id}")]
@@ -36,16 +68,18 @@ namespace ProveedoresBackendCSharp.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> postProveedor([FromForm] ProveedorModel proveedor, [FromForm] IFormFile constancia, [FromForm] IFormFile estado_cuenta)
+        public async Task<dynamic/*IActionResult*/> postProveedor([FromForm] ProveedorModel proveedor, [FromForm] IFormFile constancia, [FromForm] IFormFile estado_cuenta)
         {
             try
             {
                 // Obtener el id y nombre del usuario a partir del token
                 var idClaim = User.Claims.FirstOrDefault(c => c.Type == "id");
                 proveedor.id_solicitante = idClaim != null ? int.Parse(idClaim.Value) : 0;
+                proveedor.id_modificador = proveedor.id_solicitante;
 
                 var nombreClaim = User.Claims.FirstOrDefault(c => c.Type == "nombre");
-                proveedor.solicitante = nombreClaim != null ? nombreClaim.Value : string.Empty;
+                proveedor.nombre_solicitante = nombreClaim != null ? nombreClaim.Value : string.Empty;
+                proveedor.nombre_modificador = proveedor.nombre_solicitante;
 
                 // Validar la existencia del primer archivo (constancia de situacion fiscal)
                 if (constancia != null && constancia.Length > 0)
@@ -95,17 +129,27 @@ namespace ProveedoresBackendCSharp.Controllers
 
                 // Guardando el proveedor en la base de datos
                 await proveedorData.postProveedor(proveedor);
-                return Ok("Proveedor creado exitosamente.");
+                //return Ok("Proveedor creado exitosamente.");
+                return new
+                {
+                    success = true,
+                    message = "Proveedor creado exitosamente"
+                };
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Error al crear el proveedor: {ex.Message}");
+                //return StatusCode(StatusCodes.Status500InternalServerError, $"Error al crear el proveedor: {ex.Message}");
+                return new
+                {
+                    success = false,
+                    message = $"Error al crear el proveedor: {ex.Message}"
+                };
             }
         }
 
         [HttpPut("{id}")]
         [Authorize]
-        public async Task<IActionResult> putProveedor(int id, [FromForm] ProveedorModel proveedor)
+        public async Task<dynamic/*IActionResult*/> putProveedor(int id, [FromForm] ProveedorModel proveedor)
         {
             try
             {
@@ -113,21 +157,44 @@ namespace ProveedoresBackendCSharp.Controllers
                 var proveedorExistente = await proveedorData.getProveedorById(id);
                 if (proveedorExistente.Count() == 0)
                 {
-                    return NotFound("Proveedor no encontrado.");
+                    //return NotFound("Proveedor no encontrado.");
+                    return new
+                    {
+                        success = false,
+                        message = "Proveedor no encontrado"
+                    };
                 }
-                // Si el proveedor existe, actualizar
+                
+                // Obtener el id y nombre del usuario a partir del token
+                var idClaim = User.Claims.FirstOrDefault(c => c.Type == "id");
+                proveedor.id_modificador = idClaim != null ? int.Parse(idClaim.Value) : 0;
+
+                var nombreClaim = User.Claims.FirstOrDefault(c => c.Type == "nombre");
+                proveedor.nombre_modificador = nombreClaim != null ? nombreClaim.Value : string.Empty;
+
+                // Actualizar el registro en la base de datos
                 await proveedorData.putProveedor(id, proveedor);
-                return Ok("Proveedor modificado exitosamente.");
+                //return Ok("Proveedor modificado exitosamente.");
+                return new
+                {
+                    success = true,
+                    message = "Proveedor modificado exitosamente"
+                };
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Error al modificar el proveedor: {ex.Message}");
+                //return StatusCode(StatusCodes.Status500InternalServerError, $"Error al modificar el proveedor: {ex.Message}");
+                return new
+                {
+                    success = false,
+                    message = $"Error al modificar el proveedor: {ex.Message}"
+                };
             }
         }
 
         [HttpDelete("{id}")]
         [Authorize]
-        public async Task<IActionResult> deleteProveedor(int id)
+        public async Task<dynamic/*IActionResult*/> deleteProveedor(int id)
         {
             try
             {
@@ -135,15 +202,30 @@ namespace ProveedoresBackendCSharp.Controllers
                 var proveedorExistente = await proveedorData.getProveedorById(id);
                 if (proveedorExistente.Count() == 0)
                 {
-                    return NotFound("Proveedor no encontrado.");
+                    //return NotFound("Proveedor no encontrado.");
+                    return new
+                    {
+                        success = false,
+                        message = "Proveedor no encontrado"
+                    };
                 }
                 // Si el proveedor existe, eliminar
                 await proveedorData.deleteProveedor(id);
-                return Ok("Proveedor eliminado exitosamente.");
+                //return Ok("Proveedor eliminado exitosamente.");
+                return new
+                {
+                    success = true,
+                    message = "Proveedor eliminado exitosamente"
+                };
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Error al eliminar el proveedor: {ex.Message}");
+                //return StatusCode(StatusCodes.Status500InternalServerError, $"Error al eliminar el proveedor: {ex.Message}");
+                return new
+                {
+                    success = false,
+                    message = $"Error al eliminar el proveedor: {ex.Message}"
+                };
             }
         }
     }

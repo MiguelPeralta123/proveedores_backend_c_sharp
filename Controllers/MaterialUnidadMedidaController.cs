@@ -6,7 +6,7 @@ using ProveedoresBackendCSharp.Models;
 namespace ProveedoresBackendCSharp.Controllers
 {
     [ApiController]
-    [Route("api/material_unidad_medida")]
+    [Route("api/material_unidades")]
     public class MaterialUnidadMedidaController: ControllerBase
     {
         [HttpGet]

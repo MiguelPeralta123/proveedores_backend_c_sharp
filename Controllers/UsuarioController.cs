@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Authorization;
 namespace ProveedoresBackendCSharp.Controllers
 {
     [ApiController]
-    [Route("api/login")]
     public class UsuarioController: ControllerBase
     {
         public IConfiguration _configuration;
@@ -20,6 +19,7 @@ namespace ProveedoresBackendCSharp.Controllers
             _configuration = configuration;
         }
 
+        [Route("api/login")]
         [HttpPost]
         public async Task<dynamic> Login([FromForm] UsuarioModel usuario)
         {
@@ -35,7 +35,7 @@ namespace ProveedoresBackendCSharp.Controllers
                 {
                     success = false,
                     message = "Credenciales incorrectas",
-                    result = ""
+                    jwt = ""
                 };
             }
 
@@ -47,7 +47,10 @@ namespace ProveedoresBackendCSharp.Controllers
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                 new Claim("id", user.id.ToString()),
-                new Claim("nombre", user.nombre)
+                new Claim("nombre", user.nombre),
+                new Claim("aprob_compras", user.aprob_compras.ToString()),
+                new Claim("aprob_finanzas", user.aprob_finanzas.ToString()),
+                new Claim("aprob_sistemas", user.aprob_sistemas.ToString()),
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.key));
@@ -59,17 +62,37 @@ namespace ProveedoresBackendCSharp.Controllers
             {
                 success = true,
                 message = "Inicio de sesión correcto",
-                result = new JwtSecurityTokenHandler().WriteToken(token)
+                jwt = new JwtSecurityTokenHandler().WriteToken(token),
+                user
             };
         }
 
+        /*[Route("api/login")]
         [HttpGet]
-        [Authorize]
+        [Authorize]*/
         private async Task<List<UsuarioModel>> getUsers()
         {
             var function = new UsuarioData();
             var list = await function.GetUsers();
             return list;
         }
+
+        // Funcionality to delete a token
+        /*[Route("api/logout")]
+        [HttpPost]
+        public async Task<dynamic> Logout()
+        {
+
+            var jwt = _configuration.GetSection("Jwt").Get<JwtModel>();
+
+            var token = new JwtSecurityToken(jwt.issuer, jwt.audience, claims, expires: DateTime.Now.AddDays(1), signingCredentials: signin);
+
+            return new
+            {
+                success = true,
+                message = "Inicio de sesión correcto",
+                result = new JwtSecurityTokenHandler().WriteToken(token)
+            };
+        }*/
     }
 }

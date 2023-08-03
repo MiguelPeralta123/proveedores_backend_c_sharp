@@ -2,10 +2,10 @@
 {
     public class MonedaModel
     {
-        public MonedaModel(string opcion)
+        public MonedaModel(string moneda)
         {
-            this.opcion = opcion;
+            this.moneda = moneda;
         }
-        public string opcion { get; set; }
+        public string moneda { get; set; }
     }
 }

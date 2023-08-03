@@ -22,7 +22,7 @@ namespace ProveedoresBackendCSharp.Data
                     {
                         while (await reader.ReadAsync())
                         {
-                            var moneda = new MonedaModel((string)reader["opcion"]);
+                            var moneda = new MonedaModel((string)reader["moneda"]);
                             list.Add(moneda);
                         }
                         return list;
