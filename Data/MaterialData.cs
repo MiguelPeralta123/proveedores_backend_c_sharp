@@ -601,6 +601,7 @@ namespace ProveedoresBackendCSharp.Data
                     cmd.Parameters.AddWithValue("@id_modificador", material.id_modificador);
                     cmd.Parameters.AddWithValue("@nombre_modificador", material.nombre_modificador);
                     cmd.Parameters.AddWithValue("@fecha_modificacion", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@tipo_alta", material.tipo_alta);
                     cmd.Parameters.AddWithValue("@familia", material.familia);
                     cmd.Parameters.AddWithValue("@subfamilia", material.subfamilia);
                     if (!string.IsNullOrEmpty(material.marca))

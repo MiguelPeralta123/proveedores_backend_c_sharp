@@ -10,6 +10,7 @@
         public int id_modificador { get; set; }
         public string? nombre_modificador { get; set; }
         public DateTime fecha_modificacion { get; set; }
+        public string tipo_alta { get; set; }
         public string familia { get; set; }
         public string subfamilia { get; set; }
         public string? marca { get; set; }
